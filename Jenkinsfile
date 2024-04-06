@@ -1,6 +1,6 @@
 pipeline {
-    agent { label 'worker-node-label'}
-    tools { maven 'maven-tool'}
+    agent { label 'my-node'}
+    tools { maven 'maven-name'}
 
     stages {
         stage('checkout source code') {
@@ -17,8 +17,8 @@ pipeline {
 
         stage('deploy to tomcat') {
             steps {
-                sshagent(['tomcat-cred']) {
-                sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@54.173.109.207:/opt/tomcat9/webapps"
+                sshagent(['tommy']) {
+                sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@18.206.96.48:/opt/tomcat9/webapps"
             }
             }
         }
